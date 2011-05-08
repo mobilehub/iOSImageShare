@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECF137A21376EB1C00781EC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137A11376EB1C00781EC4 /* Foundation.framework */; };
+		ECF137AD1376EB1C00781EC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137AC1376EB1C00781EC4 /* UIKit.framework */; };
+		ECF137AE1376EB1C00781EC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137A11376EB1C00781EC4 /* Foundation.framework */; };
+		ECF137B01376EB1C00781EC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137AF1376EB1C00781EC4 /* CoreGraphics.framework */; };
+		ECF137B31376EB1C00781EC4 /* libiOSImageShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF1379E1376EB1C00781EC4 /* libiOSImageShare.a */; };
+		ECF137B91376EB1C00781EC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECF137B71376EB1C00781EC4 /* InfoPlist.strings */; };
+		ECF137BC1376EB1C00781EC4 /* iOSImageShareTests.h in Resources */ = {isa = PBXBuildFile; fileRef = ECF137BB1376EB1C00781EC4 /* iOSImageShareTests.h */; };
+		ECF137BE1376EB1C00781EC4 /* iOSImageShareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF137BD1376EB1C00781EC4 /* iOSImageShareTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ECF137B11376EB1C00781EC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECF137951376EB1B00781EC4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECF1379D1376EB1C00781EC4;
+			remoteInfo = iOSImageShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ECF1379E1376EB1C00781EC4 /* libiOSImageShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSImageShare.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECF137A11376EB1C00781EC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ECF137A51376EB1C00781EC4 /* iOSImageShare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSImageShare-Prefix.pch"; sourceTree = "<group>"; };
+		ECF137AB1376EB1C00781EC4 /* iOSImageShareTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSImageShareTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECF137AC1376EB1C00781EC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ECF137AF1376EB1C00781EC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ECF137B61376EB1C00781EC4 /* iOSImageShareTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSImageShareTests-Info.plist"; sourceTree = "<group>"; };
+		ECF137B81376EB1C00781EC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ECF137BA1376EB1C00781EC4 /* iOSImageShareTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSImageShareTests-Prefix.pch"; sourceTree = "<group>"; };
+		ECF137BB1376EB1C00781EC4 /* iOSImageShareTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSImageShareTests.h; sourceTree = "<group>"; };
+		ECF137BD1376EB1C00781EC4 /* iOSImageShareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSImageShareTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECF1379B1376EB1C00781EC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF137A21376EB1C00781EC4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF137A71376EB1C00781EC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF137AD1376EB1C00781EC4 /* UIKit.framework in Frameworks */,
+				ECF137AE1376EB1C00781EC4 /* Foundation.framework in Frameworks */,
+				ECF137B01376EB1C00781EC4 /* CoreGraphics.framework in Frameworks */,
+				ECF137B31376EB1C00781EC4 /* libiOSImageShare.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECF137931376EB1B00781EC4 = {
+			isa = PBXGroup;
+			children = (
+				ECF137A31376EB1C00781EC4 /* iOSImageShare */,
+				ECF137B41376EB1C00781EC4 /* iOSImageShareTests */,
+				ECF137A01376EB1C00781EC4 /* Frameworks */,
+				ECF1379F1376EB1C00781EC4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECF1379F1376EB1C00781EC4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECF1379E1376EB1C00781EC4 /* libiOSImageShare.a */,
+				ECF137AB1376EB1C00781EC4 /* iOSImageShareTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECF137A01376EB1C00781EC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECF137A11376EB1C00781EC4 /* Foundation.framework */,
+				ECF137AC1376EB1C00781EC4 /* UIKit.framework */,
+				ECF137AF1376EB1C00781EC4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECF137A31376EB1C00781EC4 /* iOSImageShare */ = {
+			isa = PBXGroup;
+			children = (
+				ECF137A41376EB1C00781EC4 /* Supporting Files */,
+			);
+			path = iOSImageShare;
+			sourceTree = "<group>";
+		};
+		ECF137A41376EB1C00781EC4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECF137A51376EB1C00781EC4 /* iOSImageShare-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECF137B41376EB1C00781EC4 /* iOSImageShareTests */ = {
+			isa = PBXGroup;
+			children = (
+				ECF137BB1376EB1C00781EC4 /* iOSImageShareTests.h */,
+				ECF137BD1376EB1C00781EC4 /* iOSImageShareTests.m */,
+				ECF137B51376EB1C00781EC4 /* Supporting Files */,
+			);
+			path = iOSImageShareTests;
+			sourceTree = "<group>";
+		};
+		ECF137B51376EB1C00781EC4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECF137B61376EB1C00781EC4 /* iOSImageShareTests-Info.plist */,
+				ECF137B71376EB1C00781EC4 /* InfoPlist.strings */,
+				ECF137BA1376EB1C00781EC4 /* iOSImageShareTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		ECF1379C1376EB1C00781EC4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		ECF1379D1376EB1C00781EC4 /* iOSImageShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECF137C11376EB1C00781EC4 /* Build configuration list for PBXNativeTarget "iOSImageShare" */;
+			buildPhases = (
+				ECF1379A1376EB1C00781EC4 /* Sources */,
+				ECF1379B1376EB1C00781EC4 /* Frameworks */,
+				ECF1379C1376EB1C00781EC4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSImageShare;
+			productName = iOSImageShare;
+			productReference = ECF1379E1376EB1C00781EC4 /* libiOSImageShare.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		ECF137AA1376EB1C00781EC4 /* iOSImageShareTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECF137C41376EB1C00781EC4 /* Build configuration list for PBXNativeTarget "iOSImageShareTests" */;
+			buildPhases = (
+				ECF137A61376EB1C00781EC4 /* Sources */,
+				ECF137A71376EB1C00781EC4 /* Frameworks */,
+				ECF137A81376EB1C00781EC4 /* Resources */,
+				ECF137A91376EB1C00781EC4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ECF137B21376EB1C00781EC4 /* PBXTargetDependency */,
+			);
+			name = iOSImageShareTests;
+			productName = iOSImageShareTests;
+			productReference = ECF137AB1376EB1C00781EC4 /* iOSImageShareTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECF137951376EB1B00781EC4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "CodeCrop Software";
+			};
+			buildConfigurationList = ECF137981376EB1B00781EC4 /* Build configuration list for PBXProject "iOSImageShare" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ECF137931376EB1B00781EC4;
+			productRefGroup = ECF1379F1376EB1C00781EC4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECF1379D1376EB1C00781EC4 /* iOSImageShare */,
+				ECF137AA1376EB1C00781EC4 /* iOSImageShareTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECF137A81376EB1C00781EC4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF137B91376EB1C00781EC4 /* InfoPlist.strings in Resources */,
+				ECF137BC1376EB1C00781EC4 /* iOSImageShareTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ECF137A91376EB1C00781EC4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECF1379A1376EB1C00781EC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECF137A61376EB1C00781EC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF137BE1376EB1C00781EC4 /* iOSImageShareTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ECF137B21376EB1C00781EC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECF1379D1376EB1C00781EC4 /* iOSImageShare */;
+			targetProxy = ECF137B11376EB1C00781EC4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ECF137B71376EB1C00781EC4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECF137B81376EB1C00781EC4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ECF137BF1376EB1C00781EC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ECF137C01376EB1C00781EC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		ECF137C21376EB1C00781EC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/iOSImageShare.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSImageShare/iOSImageShare-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ECF137C31376EB1C00781EC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/iOSImageShare.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSImageShare/iOSImageShare-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ECF137C51376EB1C00781EC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSImageShareTests/iOSImageShareTests-Prefix.pch";
+				INFOPLIST_FILE = "iOSImageShareTests/iOSImageShareTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		ECF137C61376EB1C00781EC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSImageShareTests/iOSImageShareTests-Prefix.pch";
+				INFOPLIST_FILE = "iOSImageShareTests/iOSImageShareTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECF137981376EB1B00781EC4 /* Build configuration list for PBXProject "iOSImageShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECF137BF1376EB1C00781EC4 /* Debug */,
+				ECF137C01376EB1C00781EC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECF137C11376EB1C00781EC4 /* Build configuration list for PBXNativeTarget "iOSImageShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECF137C21376EB1C00781EC4 /* Debug */,
+				ECF137C31376EB1C00781EC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ECF137C41376EB1C00781EC4 /* Build configuration list for PBXNativeTarget "iOSImageShareTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECF137C51376EB1C00781EC4 /* Debug */,
+				ECF137C61376EB1C00781EC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECF137951376EB1B00781EC4 /* Project object */;
+}
