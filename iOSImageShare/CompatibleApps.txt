@@ -1,0 +1,2 @@
+Snap!|snap|base64|send,receive
+Camera+|camplus|base64|send,receive
