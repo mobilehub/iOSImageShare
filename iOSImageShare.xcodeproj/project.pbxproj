@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC61E7CE137ADFF7006723DC /* iOSImageSharer.h in Headers */ = {isa = PBXBuildFile; fileRef = EC61E7CC137ADFF7006723DC /* iOSImageSharer.h */; };
+		EC61E7CF137ADFF7006723DC /* iOSImageSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC61E7CD137ADFF7006723DC /* iOSImageSharer.m */; };
+		EC61E7D1137AE0C6006723DC /* iOSImageShareConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = EC61E7D0137AE0C6006723DC /* iOSImageShareConstants.h */; };
 		ECF137A21376EB1C00781EC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137A11376EB1C00781EC4 /* Foundation.framework */; };
 		ECF137AD1376EB1C00781EC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137AC1376EB1C00781EC4 /* UIKit.framework */; };
 		ECF137AE1376EB1C00781EC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF137A11376EB1C00781EC4 /* Foundation.framework */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC61E7CC137ADFF7006723DC /* iOSImageSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSImageSharer.h; sourceTree = "<group>"; };
+		EC61E7CD137ADFF7006723DC /* iOSImageSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSImageSharer.m; sourceTree = "<group>"; };
+		EC61E7D0137AE0C6006723DC /* iOSImageShareConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSImageShareConstants.h; sourceTree = "<group>"; };
 		ECF1379E1376EB1C00781EC4 /* libiOSImageShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSImageShare.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF137A11376EB1C00781EC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECF137A51376EB1C00781EC4 /* iOSImageShare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSImageShare-Prefix.pch"; sourceTree = "<group>"; };
@@ -110,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				ECF137A41376EB1C00781EC4 /* Supporting Files */,
+				EC61E7D0137AE0C6006723DC /* iOSImageShareConstants.h */,
+				EC61E7CC137ADFF7006723DC /* iOSImageSharer.h */,
+				EC61E7CD137ADFF7006723DC /* iOSImageSharer.m */,
 				ECF137EB13779AB000781EC4 /* iOSImageShare.h */,
 				ECF137EC13779AB000781EC4 /* iOSImageShare.m */,
 				ECF137C71376EC0F00781EC4 /* NSURL+iOSImageShare.h */,
@@ -159,6 +168,8 @@
 				ECF137C91376EC1000781EC4 /* NSURL+iOSImageShare.h in Headers */,
 				ECF137D41376ECF700781EC4 /* URLBase64.h in Headers */,
 				ECF137ED13779AB000781EC4 /* iOSImageShare.h in Headers */,
+				EC61E7CE137ADFF7006723DC /* iOSImageSharer.h in Headers */,
+				EC61E7D1137AE0C6006723DC /* iOSImageShareConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +274,7 @@
 				ECF137CA1376EC1000781EC4 /* NSURL+iOSImageShare.m in Sources */,
 				ECF137D51376ECF700781EC4 /* URLBase64.m in Sources */,
 				ECF137EE13779AB000781EC4 /* iOSImageShare.m in Sources */,
+				EC61E7CF137ADFF7006723DC /* iOSImageSharer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +319,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Volumes/MyProjects/iOSImageShare/iOSImageShare/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
@@ -320,6 +333,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Volumes/MyProjects/iOSImageShare/iOSImageShare/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
