@@ -6,36 +6,23 @@
 //
 
 #import "iOSImageShare.h"
+#import "iOSImageSharer.h"
 #import "URLBase64.h"
+#import "iOSImageShareConstants.h"
 
-#define SCHEMAS_URL  @"https://github.com/gpambrozio/iOSImageShare/raw/master/iOSImageShare/CompatibleApps.txt"
+@interface iOSImageShare ()
 
+- (void)readAvailableSharersDataFromCache;
+- (void)findMySchema;
 
-@implementation iOSImageSharer
-
-@synthesize name = _name;
-@synthesize schema = _schema;
-@synthesize availableDecoders = _availableDecoders;
-@synthesize availabeOperations = _availabeOperations;
-
-- (void) dealloc {
-    [_name release];
-    [_schema release];
-    [_availableDecoders release];
-    [_availabeOperations release];
-    [super dealloc];
-}
+@property (readonly) NSString *mySchema;
 
 @end
 
-@interface iOSImageShare (PrivateStuff)
-
-- (void)updateAvailableSchemas;
-- (NSArray *)availableSchemas;
-
-@end
 
 @implementation iOSImageShare
+
+@synthesize mySchema = _mySchema;
 
 static iOSImageShare *_instance = nil;
 
@@ -45,7 +32,8 @@ static iOSImageShare *_instance = nil;
     
     @synchronized(self) {
         if (_instance == nil) {
-            [[self alloc] init];
+            // The autorelease below is just to avoid an analyser warning.
+            [[[self alloc] init] autorelease];
         }
     }
     
@@ -56,6 +44,8 @@ static iOSImageShare *_instance = nil;
     @synchronized(self) {
         if (_instance == nil) {
             _instance = [super allocWithZone:zone];
+            [_instance readAvailableSharersDataFromCache];
+            [_instance findMySchema];
             return _instance;
         }
     }
@@ -94,107 +84,148 @@ static iOSImageShare *_instance = nil;
     return [URLBase64 encode:UIImageJPEGRepresentation(image, quality)];
 }
 
-- (void)updateAvailableSchemas {
+- (void)findMySchema {
+    [_mySchema release];
+    _mySchema = nil;
     
-    if (_updateSchemaConnection) {
-        [_updateSchemaConnection cancel];
-        [_updateSchemaConnection release];
-        _updateSchemaConnection = nil;
+    NSArray *urls = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleURLTypes"];
+    if ([urls count] > 0) {
+        NSDictionary *url = [urls objectAtIndex:0];
+        NSArray *schemes = [url objectForKey:@"CFBundleURLSchemes"];
+        if ([schemes count] > 0) {
+            _mySchema = [[schemes objectAtIndex:0] copy];
+        }
+    }
+}
+
+- (void)updateAvailableSharers {
+    
+    if (_updateSharersConnection) {
+        [_updateSharersConnection cancel];
+        [_updateSharersConnection release];
+        _updateSharersConnection = nil;
     }
     
-    if (_updateSchemaData) {
-        [_updateSchemaData release];
-        _updateSchemaData = nil;
+    if (_updateSharersData) {
+        [_updateSharersData release];
+        _updateSharersData = nil;
     }
     
     NSURL *url = [[NSURL alloc] initWithString:SCHEMAS_URL];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:10.0];
 
-    _updateSchemaData = [[NSMutableData alloc] init];
-    _updateSchemaConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [_updateSchemaConnection start];
+    _updateSharersData = [[NSMutableData alloc] init];
+    _updateSharersConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [_updateSharersConnection start];
 
     [request release];
     [url release];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [_updateSchemaData appendData:data];
+    [_updateSharersData appendData:data];
 }
 
 - (void)parseAvailableSchemaData:(NSData*)data {
     NSString *list = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    [_availableSchemas release];
-    _availableSchemas = [[NSMutableArray alloc] init];
+    NSMutableArray *newSharerList = [[NSMutableArray alloc] init];
     
     NSArray *lines = [list componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\r\n"]];
     for (NSString *line in lines) {
         NSArray *components = [line componentsSeparatedByString:@"|"];
-        if ([components count] == 4) {
+        if ([components count] >= 5) {
             
-            iOSImageSharer *sharer = [[iOSImageSharer alloc] init];
-            sharer.name   = [components objectAtIndex:0];
-            sharer.schema = [components objectAtIndex:1];
-            sharer.availableDecoders  = [[components objectAtIndex:2] componentsSeparatedByString:@","];
-            sharer.availabeOperations = [[components objectAtIndex:3] componentsSeparatedByString:@","];
-            
-            [_availableSchemas addObject:sharer];
-            [sharer release];
+            NSString *schema = [components objectAtIndex:1];
+            if (![schema isEqualToString:self.mySchema] && [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[schema stringByAppendingString:@"://"]]]) {
+                
+                iOSImageSharer *sharer = [[iOSImageSharer alloc] init];
+                sharer.name   = [components objectAtIndex:0];
+                sharer.schema = schema;
+                sharer.availableDecoders  = [[components objectAtIndex:2] componentsSeparatedByString:@","];
+                sharer.availabeOperations = [[components objectAtIndex:3] componentsSeparatedByString:@","];
+                sharer.iconLocation = [NSURL URLWithString:[components objectAtIndex:4]];
+                [sharer updateSharerIcon];
+
+                [newSharerList addObject:sharer];
+                [sharer release];
+            }
         }
     }
+    
+    [_availableSharers release];
+    _availableSharers = newSharerList;
     
     [list release];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [self parseAvailableSchemaData:_updateSchemaData];
+- (void)readAvailableSharersDataFromCache {
     
     NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cacheDirectory = [cachePaths objectAtIndex:0];
     NSString *cacheFile = [cacheDirectory stringByAppendingPathComponent:@"CompatibleApps.txt"];
-
-    [_updateSchemaData writeToFile:cacheFile atomically:YES];
-
-    [_updateSchemaData release];
-    _updateSchemaData = nil;
-
-    [_updateSchemaConnection release];
-    _updateSchemaConnection = nil;
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-
-    NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *cacheDirectory = [cachePaths objectAtIndex:0];
-    NSString *cacheFile = [cacheDirectory stringByAppendingPathComponent:@"CompatibleApps.txt"];
-
+    
     // If there's no cache file, try to locate in main bundle.
     if (![[NSFileManager defaultManager] isReadableFileAtPath:cacheFile])
         cacheFile = [[NSBundle mainBundle] pathForResource:@"CompatibleApps" ofType:@"txt"];
-
+    
     if (cacheFile) {
         NSData *cachedData = [NSData dataWithContentsOfFile:cacheFile];
         [self parseAvailableSchemaData:cachedData];
     }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [self parseAvailableSchemaData:_updateSharersData];
     
-    [_updateSchemaData release];
-    _updateSchemaData = nil;
+    NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cacheDirectory = [cachePaths objectAtIndex:0];
+    NSString *cacheFile = [cacheDirectory stringByAppendingPathComponent:@"CompatibleApps.txt"];
+
+    [_updateSharersData writeToFile:cacheFile atomically:YES];
+
+    [_updateSharersData release];
+    _updateSharersData = nil;
+
+    [_updateSharersConnection release];
+    _updateSharersConnection = nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+
+    [self readAvailableSharersDataFromCache];
     
-    [_updateSchemaConnection release];
-    _updateSchemaConnection = nil;
+    [_updateSharersData release];
+    _updateSharersData = nil;
+    
+    [_updateSharersConnection release];
+    _updateSharersConnection = nil;
 }
 
-+ (void)updateAvailableSchemas {
-    [[iOSImageShare instance] updateAvailableSchemas];
++ (void)updateAvailableSharers {
+    [[iOSImageShare instance] updateAvailableSharers];
 }
 
-- (NSArray *)availableSchemas {
-    return _availableSchemas;
+- (NSArray *)availableSharers {
+    return _availableSharers;
 }
 
-+ (NSArray *)availableSchemas {
-    return [[iOSImageShare instance] availableSchemas];
++ (NSArray *)availableSharers {
+    return [[iOSImageShare instance] availableSharers];
+}
+
++ (void)sendImageUsingJPEG:(UIImage *)image quality:(CGFloat)quality withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
+    [[UIApplication sharedApplication] openURL:
+     [NSURL URLWithString:
+      [NSString stringWithFormat:@"%@://%@?id=%@&returnTo=%@base64=%@", 
+       schema, operation, identifier, [[iOSImageShare instance] mySchema], [iOSImageShare encodeImageAsJPG:image quality:quality]]]];
+}
+
++ (void)sendImageUsingPNG:(UIImage *)image withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
+    [[UIApplication sharedApplication] openURL:
+     [NSURL URLWithString:
+      [NSString stringWithFormat:@"%@://%@?id=%@&returnTo=%@base64=%@", 
+       schema, operation, identifier, [[iOSImageShare instance] mySchema], [iOSImageShare encodeImageAsPNG:image]]]];
 }
 
 @end
