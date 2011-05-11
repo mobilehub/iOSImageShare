@@ -1,2 +1,2 @@
-Snap!|snap|base64|send,receive
-Camera+|camplus|base64|send,receive
+Snap!|snap|base64|send,receive|http://static.snap.codecrop.com/Icon@2x.png
+Camera+|camplus|base64|send,receive|http://static.snap.codecrop.com/Icon@2x.png
