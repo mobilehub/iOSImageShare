@@ -12,16 +12,6 @@
 
 #import "URLBase64.h"
 
-
-/* Add this before each category implementation, so we don't have to use -all_load or -force_load
- * to load object files from static libraries that only contain categories and no classes.
- *
- * See http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html for more info.
- */
-
-@interface FIX_CATEGORY_BUG_URLBase64 @end
-@implementation FIX_CATEGORY_BUG_URLBase64 @end
-
 @implementation URLBase64
 
 #define ArrayLength(x) (sizeof(x)/sizeof(*(x)))
