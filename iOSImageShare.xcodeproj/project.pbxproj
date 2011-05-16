@@ -40,6 +40,7 @@
 		EC61E7CC137ADFF7006723DC /* iOSImageSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSImageSharer.h; sourceTree = "<group>"; };
 		EC61E7CD137ADFF7006723DC /* iOSImageSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSImageSharer.m; sourceTree = "<group>"; };
 		EC61E7D0137AE0C6006723DC /* iOSImageShareConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSImageShareConstants.h; sourceTree = "<group>"; };
+		ECA2E191137AEED800220CF6 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		ECF1379E1376EB1C00781EC4 /* libiOSImageShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSImageShare.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF137A11376EB1C00781EC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECF137A51376EB1C00781EC4 /* iOSImageShare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSImageShare-Prefix.pch"; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		ECF137931376EB1B00781EC4 = {
 			isa = PBXGroup;
 			children = (
+				ECA2E191137AEED800220CF6 /* README.markdown */,
 				ECF137A31376EB1C00781EC4 /* iOSImageShare */,
 				ECF137B41376EB1C00781EC4 /* iOSImageShareTests */,
 				ECF137A01376EB1C00781EC4 /* Frameworks */,
