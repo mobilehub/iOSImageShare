@@ -261,6 +261,25 @@ NSString* urlEncode(NSString* unencodeString) {
        schema, operation, identifier, [[iOSImageShare instance] mySchema], [iOSImageShare encodeImageAsPNG:image]]]];
 }
 
++ (void)sendImageFromPickerWithInfo:(NSDictionary*)info withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
+    if (identifier == nil)
+        identifier = [NSNumber numberWithInt:0];
+    
+    // The method to load an image from the asset library only works on 4.1 or greater
+    // So, even if we can send a URL, the receiving app won't be able to receive it.
+    // In this case, revert to the JPEG method.
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.1f) {
+        NSURL *assetURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:
+          [NSString stringWithFormat:@"%@://%@?id=%@&returnTo=%@&assetURL=%@", 
+           schema, operation, identifier, [[iOSImageShare instance] mySchema], urlEncode([assetURL absoluteString])]]];
+    } else {
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self sendImageUsingJPEG:image quality:0.8f withId:identifier toSchema:schema withOperation:operation];
+    }
+}
+
 + (void)sendImage:(UIImage *)image withAssetURL:(NSURL *)assetURL withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
     if (identifier == nil)
         identifier = [NSNumber numberWithInt:0];
@@ -277,5 +296,6 @@ NSString* urlEncode(NSString* unencodeString) {
         [self sendImageUsingJPEG:image quality:0.8f withId:identifier toSchema:schema withOperation:operation];
     }
 }
+
 
 @end

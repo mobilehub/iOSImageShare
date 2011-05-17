@@ -46,6 +46,7 @@
 
 + (void)sendImageUsingJPEG:(UIImage *)image quality:(CGFloat)quality withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation;
 + (void)sendImageUsingPNG:(UIImage *)image withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation;
++ (void)sendImageFromPickerWithInfo:(NSDictionary*)info withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation;
 + (void)sendImage:(UIImage *)image withAssetURL:(NSURL *)assetURL withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation;
 
 @end
