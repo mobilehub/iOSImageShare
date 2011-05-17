@@ -224,6 +224,13 @@ static iOSImageShare *_instance = nil;
     _updateSharersConnection = nil;
 }
 
+NSString* urlEncode(NSString* unencodeString) {
+    
+    NSString * encodedString = (NSString*) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencodeString, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 );
+    
+    return [encodedString autorelease];
+}
+
 + (void)updateAvailableSharers {
     [[iOSImageShare instance] updateAvailableSharers];
 }
@@ -237,6 +244,8 @@ static iOSImageShare *_instance = nil;
 }
 
 + (void)sendImageUsingJPEG:(UIImage *)image quality:(CGFloat)quality withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
+    if (identifier == nil)
+        identifier = [NSNumber numberWithInt:0];
     [[UIApplication sharedApplication] openURL:
      [NSURL URLWithString:
       [NSString stringWithFormat:@"%@://%@?id=%@&returnTo=%@base64=%@", 
@@ -244,10 +253,29 @@ static iOSImageShare *_instance = nil;
 }
 
 + (void)sendImageUsingPNG:(UIImage *)image withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
+    if (identifier == nil)
+        identifier = [NSNumber numberWithInt:0];
     [[UIApplication sharedApplication] openURL:
      [NSURL URLWithString:
       [NSString stringWithFormat:@"%@://%@?id=%@&returnTo=%@base64=%@", 
        schema, operation, identifier, [[iOSImageShare instance] mySchema], [iOSImageShare encodeImageAsPNG:image]]]];
+}
+
++ (void)sendImage:(UIImage *)image withAssetURL:(NSURL *)assetURL withId:(id)identifier toSchema:(NSString*)schema withOperation:(NSString*)operation {
+    if (identifier == nil)
+        identifier = [NSNumber numberWithInt:0];
+    
+    // The method to load an image from the asset library only works on 4.1 or greater
+    // So, even if we can send a URL, the receiving app won't be able to receive it.
+    // In this case, revert to the JPEG method.
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 4.1f) {
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:
+          [NSString stringWithFormat:@"%@://%@?id=%@&returnTo=%@&assetURL=%@", 
+           schema, operation, identifier, [[iOSImageShare instance] mySchema], urlEncode([assetURL absoluteString])]]];
+    } else {
+        [self sendImageUsingJPEG:image quality:0.8f withId:identifier toSchema:schema withOperation:operation];
+    }
 }
 
 @end

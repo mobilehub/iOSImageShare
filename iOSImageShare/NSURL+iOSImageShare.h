@@ -30,9 +30,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef void (^iOSImageShareGetImageSuccessBlock)(UIImage *image);
+typedef void (^iOSImageShareGetImageErrorBlock)(NSError *error);
+
 @interface NSURL (NSURL_iOSImageShare)
 
 - (NSString *)getParameterNamed:(NSString *)parameterName;
-- (UIImage *)getImage;
+- (void)getImageAndCallBlock:(iOSImageShareGetImageSuccessBlock)sucessBlock failure:(iOSImageShareGetImageErrorBlock)failureBlock;
 
 @end

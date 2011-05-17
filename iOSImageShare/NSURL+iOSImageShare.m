@@ -29,6 +29,7 @@
 
 #import "NSURL+iOSImageShare.h"
 #import "URLBase64.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 /* Add this before each category implementation, so we don't have to use -all_load or -force_load
  * to load object files from static libraries that only contain categories and no classes.
@@ -62,16 +63,38 @@
     return nil;
 }
 
-- (UIImage *)getImage {
-    NSString *base64Image = [self getParameterNamed:@"base64"];
-    if (base64Image) {
-        NSData *imageData = [URLBase64 decode:base64Image];
-        if (imageData) {
-            return [UIImage imageWithData:imageData];
+- (void)getImageAndCallBlock:(iOSImageShareGetImageSuccessBlock)sucessBlock failure:(iOSImageShareGetImageErrorBlock)failureBlock {
+
+    NSString *assetURL = [self getParameterNamed:@"assetURL"];
+    
+    if (assetURL) {
+        NSURL *url = [NSURL URLWithString:[assetURL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library assetForURL:url 
+                 resultBlock:^(ALAsset* asset) {
+                     ALAssetRepresentation *representation = [asset defaultRepresentation];
+                     UIImage *image = [UIImage imageWithCGImage:representation.fullResolutionImage
+                                                          scale:representation.scale
+                                                    orientation:representation.orientation];
+                     sucessBlock(image);
+                 }
+                failureBlock:^(NSError *error) {
+                    if (failureBlock)
+                        failureBlock(error);
+                }];
+        
+    } else {
+        
+        NSString *base64Image = [self getParameterNamed:@"base64"];
+        if (base64Image) {
+            NSData *imageData = [URLBase64 decode:base64Image];
+            if (imageData) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                sucessBlock(image);
+                return;
+            }
         }
     }
-    
-    return nil;
 }
 
 @end
